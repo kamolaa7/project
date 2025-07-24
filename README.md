@@ -32,7 +32,7 @@ VITE_RAILWAY_API_URL=https://your-railway-app.up.railway.app
    - Click on your backend node api project
    - Copy the domain URL (e.g., `https://node-api-amin.up.railway.app`)
 2. **Update the .env file:**
-   ```bash
+   ```
    VITE_RAILWAY_API_URL=https://your-actual-railway-url.up.railway.app
    ```
 3. **Restart the development server** after changing environment variables
