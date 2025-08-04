@@ -114,7 +114,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
       <div className="max-w-6xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8">Data Management System</h1>
+      <h1 className="text-4xl font-bold mb-8">BrandAid</h1>
       
       {/* Create Item Form with Message */}
       <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-xl mb-8 shadow-lg border border-blue-200">
