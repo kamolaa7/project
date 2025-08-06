@@ -114,12 +114,12 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
       <div className="max-w-6xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8">BrandAid</h1>
+      <h1 className="text-xl font-bold font-mono mb-8 text-green-800">BrandAid</h1>
       
       {/* Create Item Form with Message */}
       <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-xl mb-8 shadow-lg border border-blue-200">
-        <h2 className="text-2xl font-semibold mb-6 text-gray-800">
-          Add New Item
+        <h2 className="text-2xl font-semibold mb-6 text-gray-600">
+          Your Research Assistant 
         </h2>
         
         <form onSubmit={createItem} className="space-y-4">
@@ -164,7 +164,7 @@ function App() {
             <textarea
               value={newItem.message}
               onChange={(event) => setNewItem({...newItem, message: event.target.value})}
-              placeholder="Enter your message here..."
+              placeholder="Ask me anything about your market..."
               className="w-full px-4 py-3 border border-gray-300 rounded-lg resize-vertical focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
               rows="3"
               required
@@ -172,13 +172,13 @@ function App() {
           </div>
           
           <div className="flex justify-end mt-6">
-            <button type="submit" className="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
-              Add Item
+            <button type="submit" className="px-8 py-3 bg-gradient-to-r from-emerald-700 to-emerald-700 text-white font-semibold rounded-lg hover:from-emerald-600 hover:to-emerald-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
+              Enter
             </button>
           </div>
         </form>
       </div>
-
+      {/*END HERE*/}
       {/* Edit Item Form */}
       {editingItem && (
         <div className="bg-gradient-to-br from-amber-50 to-orange-100 p-6 rounded-xl mb-8 shadow-lg border border-amber-200">
@@ -244,14 +244,14 @@ function App() {
       {/* Data List */}
       <div className="bg-white rounded-xl shadow-xl border border-gray-200">
         <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 border-b border-gray-200 rounded-t-xl">
-          <h2 className="text-2xl font-semibold text-gray-800">
-            Your Data Collection
+          <h2 className="text-2xl font-semibold text-gray-600">
+            Your Previous Chats
           </h2>
         </div>
         {data.length === 0 ? (
           <div className="p-12 text-center">
-            <p className="text-xl text-gray-500 mb-2">No data yet!</p>
-            <p className="text-gray-400">Add some items to get started</p>
+            <p className="text-xl text-gray-500 mb-2">No chats yet!</p>
+            <p className="text-gray-400">Tell me about you business!</p>
           </div>
         ) : (
           <div className="divide-y divide-gray-100">
