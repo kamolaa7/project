@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react'
+import SideBar from './assets/component/SideBar';
+import { AlignJustify } from 'lucide-react';
+
 
 function App() {
   const [data, setData] = useState([])
@@ -141,7 +144,7 @@ function App() {
         const errorText = await response.text();
         setChatMessages(prev => [...prev, { role: "ai", text: `Error: ${response.status} - ${errorText}` }]);
       }
-    } catch (error) {
+    } catch (error) {   
       setChatMessages(prev => [...prev, { role: "ai", text: `Network error: ${error.message}` }]);
     }
   };
@@ -150,6 +153,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-xl font-bold font-mono mb-8 text-green-800">BrandAid</h1>
+        
 
         {/* AI Chat Bot UI */}
         <div className="bg-gradient-to-br from-purple-50 to-blue-100 p-6 rounded-xl mb-8 shadow-lg border border-purple-200">
@@ -185,25 +189,25 @@ function App() {
           </div>
         </div>
 
-      {/* Create Item Form with Message */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-xl mb-8 shadow-lg border border-blue-200">
-        <h2 className="text-2xl font-semibold mb-6 text-gray-600">
-          Chat History 
-        </h2>
-        {/* ...existing code... */}
-        <form onSubmit={createItem} className="space-y-4">
-          {/* ...existing code... */}
-        </form>
-      </div>
-      {/*END HERE*/}
-      {/* Edit Item Form */}
-      
+        {/* Create Item Form with Message */}
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-xl mb-8 shadow-lg border border-blue-200">
+          <h2 className="text-2xl font-semibold mb-6 text-gray-600">
+            Chat History 
+          </h2>
+        
+          <form onSubmit={createItem} className="space-y-4">
+                
+          </form>
+        </div>
 
-      {/* Data List */}
-      
+        <div className="top-6 left-6 fixed z-50 ">
+          <AlignJustify color="red" size={30} />
+        </div>
       </div>
     </div>
   )
 }
+
+
 
 export default App
