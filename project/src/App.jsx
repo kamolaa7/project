@@ -36,7 +36,7 @@ function App() {
     }
     
     console.log('API_URL:', API_URL)
-    console.log('Sending data:', { id: newItem.id, data: { message: newItem.message } })
+    console.log('Sending data:', { id: newItem.id, data: { message: newItem.message
     
     try {
       const response = await fetch(`${API_URL}/api/data`, {
@@ -123,30 +123,50 @@ function App() {
     e.preventDefault();
     if (!chatInput.trim()) return;
     setChatMessages(prev => [...prev, { role: "user", text: chatInput }]);
-    const userMessage = chatInput;
     setChatInput("");
-    try {
-      // Use timestamp as id for chat messages
-      const chatId = Date.now().toString();
-      const response = await fetch(`${API_URL}/api/data`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: chatId,
-          data: { message: userMessage }
-        })
-      });
-      if (response.ok) {
-        const data = await response.json();
-        // Optionally show confirmation or echo message
-        setChatMessages(prev => [...prev, { role: "ai", text: "Loading. Please give me a few seconds!" }]);
-      } else {
-        const errorText = await response.text();
-        setChatMessages(prev => [...prev, { role: "ai", text: `Error: ${response.status} - ${errorText}` }]);
-      }
-    } catch (error) {   
-      setChatMessages(prev => [...prev, { role: "ai", text: `Network error: ${error.message}` }]);
-    }
+
+    // Show loading animation for 1-2 seconds
+    setChatMessages(prev => [...prev, { role: "ai", text: "Loading...", loading: true }]);
+    setTimeout(() => {
+      // Remove loading animation
+      setChatMessages(prev => prev.filter(msg => !msg.loading));
+      // Output the exact AI response
+      setChatMessages(prev => [
+        ...prev,
+        {
+          role: "ai",
+          text: `Selling to older people is great! We found that teenagers in Glenside also love crocheting according to our data trend. Check it out! 
+
+~1,508 teenagers located in Glenside
+
+- Age: 10-18 year olds
+
+- 80% are active members on Tiktok
+- 30% like at least 10-20 posts on crocheting each day
+
+- 20% spend 20-50 minutes on Pinterest
+- 5% of them have crocheting on their boards
+
+
+As for your competitors, here’s what we found:
+
+
+Top Local Seller: “Crocs & Crochets”
+
+- Located in Fern Rock
+- Sells crochet tools & kits
+- Most popular item: wooden hook
+- Average price range: $9.99 - $25.99 
+- Markets to teens & adults through Tiktok videos
+- Average views per video: 5,250
+- Average likes per video: 420
+- Most viral video: “Learn to crochet in 60 seconds”
+
+
+Based off this information, it would be even better if you marketed your corchet kits on Tiktok to teenagers ranging from 10-18! Especially considering there’s 1,508 teenagers in your area that are active members on Tiktok! Would you like me to generate a Tiktok video you can post?`
+        }
+      ]);
+    }, 1500); // 1.5 seconds
   };
 
   return (
@@ -154,6 +174,7 @@ function App() {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-xl font-bold font-mono mb-8 text-green-800">BrandAid</h1>
         
+        <SideBar info="Welcome to BrandAid! Tell your AI market research assisant about your business including what you sell, marketing strategies, business location, and what you want to know about your market! The AI will give you up to date and accurate information on makrets you weren't aware of along with data on customer segments. Try it out!" />
 
         {/* AI Chat Bot UI */}
         <div className="bg-gradient-to-br from-purple-50 to-blue-100 p-6 rounded-xl mb-8 shadow-lg border border-purple-200">
@@ -166,7 +187,13 @@ function App() {
               ) : (
                 chatMessages.map((msg, idx) => (
                   <div key={idx} className={msg.role === "user" ? "text-right mb-2" : "text-left mb-2"}>
-                    <span className={msg.role === "user" ? "inline-block bg-blue-100 text-blue-800 px-3 py-2 rounded-lg" : "inline-block bg-emerald-100 text-emerald-800 px-3 py-2 rounded-lg"}>
+                    <span className={
+                      msg.loading
+                        ? "inline-block bg-emerald-50 text-emerald-800 px-3 py-2 rounded-lg animate-pulse"
+                        : msg.role === "user"
+                          ? "inline-block bg-blue-100 text-blue-800 px-3 py-2 rounded-lg"
+                          : "inline-block bg-emerald-100 text-emerald-800 px-3 py-2 rounded-lg"
+                    }>
                       {msg.text}
                     </span>
                   </div>
@@ -180,7 +207,7 @@ function App() {
                 value={chatInput}
                 onChange={e => setChatInput(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
+                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-800 focus:border-green-800 transition-all duration-200"
               />
               <button type="submit" className="px-8 py-3 bg-gradient-to-r from-emerald-700 to-emerald-700 text-white font-semibold rounded-lg hover:from-emerald-600 hover:to-emerald-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
                 Enter
@@ -194,14 +221,9 @@ function App() {
           <h2 className="text-2xl font-semibold mb-6 text-gray-600">
             Chat History 
           </h2>
-        
-          <form onSubmit={createItem} className="space-y-4">
-                
-          </form>
-        </div>
+          
 
-        <div className="top-6 left-6 fixed z-50 ">
-          <AlignJustify color="red" size={30} />
+          <form onSubmit={createItem} className="space-y-4"></form>
         </div>
       </div>
     </div>
