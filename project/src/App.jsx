@@ -225,7 +225,10 @@ Based off this information, it would be even better if you marketed your corchet
           <h2 className="text-2xl font-semibold mb-6 text-gray-600">
             Chat History 
           </h2>
-          
+          <p className="font-bold text-gray-600" >July 27, 2025</p>
+          <p className="italic">Clothing marketing insights</p>
+          <p className="font-bold text-gray-600">August 3, 2025</p>
+          <p className="italic">Competitors of Fashion Fuel</p>
 
           <form onSubmit={createItem} className="space-y-4"></form>
         </div>
