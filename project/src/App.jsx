@@ -36,7 +36,7 @@ function App() {
     }
     
     console.log('API_URL:', API_URL)
-    console.log('Sending data:', { id: newItem.id, data: { message: newItem.message
+    console.log('Sending data:', { id: newItem.id, data: { message: newItem.message}})
     
     try {
       const response = await fetch(`${API_URL}/api/data`, {
@@ -97,7 +97,7 @@ function App() {
 
   // DELETE: Remove data item (HTTP DELETE) (delete from chat histroy)
   // DELETE /api/data/:id - Deletes an item by ID from the database
-  const deleteItem = async (id) => {
+  {/*const deleteItem = async (id) => {
     try {
       const response = await fetch(`${API_URL}/api/data/${id}`, {
         method: 'DELETE'
@@ -108,7 +108,7 @@ function App() {
     } catch (error) {
       console.error('Error deleting item:', error)
     }
-  }
+  }*/}
 
   useEffect(() => {
     fetchData()
@@ -174,14 +174,18 @@ Based off this information, it would be even better if you marketed your corchet
       <div className="max-w-6xl mx-auto">
         <h1 className="text-xl font-bold font-mono mb-8 text-green-800">BrandAid</h1>
         
-        <SideBar info="Welcome to BrandAid! Tell your AI market research assisant about your business including what you sell, marketing strategies, business location, and what you want to know about your market! The AI will give you up to date and accurate information on makrets you weren't aware of along with data on customer segments. Try it out!" />
+        <SideBar info="Welcome to BrandAid! 
+        Tell your AI market research assisant about your business including what you sell, 
+        marketing strategies, business location, and what you want to know about your market! 
+        The AI will give you up to date and accurate information on makrets you weren't 
+        aware of along with data on customer segments. Try it out!" />
 
         {/* AI Chat Bot UI */}
         <div className="bg-gradient-to-br from-purple-50 to-blue-100 p-6 rounded-xl mb-8 shadow-lg border border-purple-200">
           <h2 className="text-2xl font-semibold mb-6 text-gray-600">Your Research Assistant</h2>
           <div className="flex flex-col gap-4">
             {/* Chat Output */}
-            <div className="bg-white border border-gray-200 rounded-lg p-4 h-48 overflow-y-auto mb-2">
+            <div className="bg-gray-100 border border-gray-200 rounded-lg p-4 h-48 overflow-y-auto mb-2">
               {chatMessages.length === 0 ? (
                 <div className="text-gray-400 text-center mt-12">No messages yet. Tell me about your business!</div>
               ) : (
