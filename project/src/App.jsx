@@ -3,7 +3,7 @@ import SideBar from './assets/component/SideBar';
 import { AlignJustify } from 'lucide-react';
 
 
-function App() {
+function App() { 
   const [data, setData] = useState([])
   const [newItem, setNewItem] = useState({ id: '', message: '' })
   const [editingItem, setEditingItem] = useState(null)
