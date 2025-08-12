@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import SideBar from './assets/component/SideBar';
 import { AlignJustify } from 'lucide-react';
+import { Clock } from 'lucide-react';
+
 
 
 function App() { 
@@ -200,6 +202,7 @@ Based off this information, it would be even better if you marketed your corchet
                     }>
                       {msg.text}
                     </span>
+                    
                   </div>
                 ))
               )}
